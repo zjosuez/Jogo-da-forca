@@ -47,7 +47,7 @@ public class Main {
             String valor = input.next();
             temas[i][0] = valor;
             k++;
-        
+            System.out.println("ainda não está funcionando");
         }
         
            
@@ -63,6 +63,7 @@ public class Main {
             
             if (userInput[i][0].equals(toRemove)) {
                 userInput[i][0] = userInput[i + 1][0];
+                
             }
         }
     }
