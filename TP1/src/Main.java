@@ -1,5 +1,3 @@
-
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,7 +6,7 @@ public class Main {
        menu();
        
     }
-    static String [][] temas = new String[50][50];
+    static String [][] temas = new String[51][51];
     static Scanner input = new Scanner(System.in);
     static Random random = new Random();
 
@@ -35,7 +33,7 @@ public class Main {
                 System.out.println("Jogo finalizado!");
                 break;
             default:
-                System.out.println("Valor invalido, digite novamente.");
+                System.out.println("Valor inválido, digite novamente.");
                 menu();
                 break;
         }
@@ -104,7 +102,6 @@ public class Main {
     }
 
     public static void gerenciarTemas(int valor2) {
-        
         // ---------------------------------------Cadastrar Temas.--------------------------------------
         if (valor2 == 1) {
         System.out.println("\nQuantidade de temas que deseja cadastrar: ");
@@ -133,9 +130,16 @@ public class Main {
                     System.out.println("Tema já foi inserido");
                 }
             }
-            temas[i][0] = valor;
+            for(int aux = 0; aux < temas.length; aux++) {
+                if (temas[aux][0] == "" || temas[aux][0] == null) {
+                    temas[aux][0] = valor;
+                    break;
+                }
+            }   
             k++;
+            
             }
+            
         System.out.println("\nOs temas foram cadastrados com sucesso!\n");
         temasMenu();
         }
@@ -150,14 +154,14 @@ public class Main {
                 if (remover.equals(temas[i][0])) {
                     temas[i][0] = null;
                     System.out.println("Tema removido com sucesso!");
-                    temasMenu();
                 } 
                 if (i == temas.length) {
                     System.out.println("Tema não encontrado.");
                     temasMenu();
                 }
             }
-            System.out.println(Arrays.deepToString(temas));
+            
+            temasMenu();
         }
            
         // ---------------------------------------Buscar Temas.--------------------------------------
@@ -176,12 +180,14 @@ public class Main {
                 if (temas[i][0].equals(buscaPalavra1)) {
                     System.out.println("O tema " + buscaPalavra1 + " está cadastrado.");
                     vCadastro = true;
-                    temasMenu();
+                    
                 }
             }
             if (vCadastro == false) {
                 System.out.println("O tema " + buscaPalavra1 + " não está cadastrado.");
+                
             }
+            temasMenu();
         }   
     }
 
@@ -192,7 +198,7 @@ public class Main {
             // Mostrando os temas que já foram cadastrados.
             for (int i = 0; i < temas.length; i++) {
                 if (temas[0][0] == null) {
-                    System.out.println("Nunhum tema foi inserido, volte e insira um tema para cadastrar as palavras");
+                    System.out.println("Nunhum tema foi inserido, insira um tema para cadastrar as palavras");
                     palavrasMenu();
                 }
                 if (!temas[i][0].equals("")) {
@@ -214,7 +220,7 @@ public class Main {
             int qtdPalavras = input.nextInt();
             if (qtdPalavras > 50) {
                 System.out.println("So pode inserir 50 palavras no máximo.");
-                gerenciarPalavras(1);
+                
             }
             int k = 1;
             // Estrutura de repetição para armazenar as palavras no array.
@@ -233,9 +239,8 @@ public class Main {
                     for (int m = 0; m < qtdPalavras; m++) {
                         temas[l][m + 1] = palavraEscolha[m];
                     }  
-                }                
+                }           
             }
-            
 
             System.out.println("As palavras foram cadastrados com sucesso!\n");
             palavrasMenu();
@@ -280,8 +285,6 @@ public class Main {
                                 temas[i][k] = temas[i][k + 1];
                                 temas[i][k + 1] = "";
                             }
-                            System.out.println(Arrays.deepToString(temas));
-
                             palavrasMenu();
                         }
                     }
@@ -361,7 +364,7 @@ public class Main {
         }
 
         String temaSelecionado = input.next();
-        String [] bancoPalavras = new String [50];
+        String [] bancoPalavras = new String [51];
         
         int aux = 0;
 
@@ -387,7 +390,6 @@ public class Main {
         // Pegando palavras aleatórias dentro do array "bancoPalavras".
         int posicaoPalavra = random.nextInt(aux);
         String palavraEscolhida = bancoPalavras[posicaoPalavra];
-        // System.out.println(palavraEscolhida);
         char [] encontrada = new char[palavraEscolhida.length()];
         boolean condicao = false;
         int qtdErros = 5;
@@ -429,13 +431,11 @@ public class Main {
             if (condicao != false) {
                 System.out.println("\n\nParabens voce acertou, a palavra é: " + palavraEscolhida);
                 System.out.println("\nDeseja jogar novamente?\n[1] Para jogar novamente\n[2] para sair");
+                
                     int fimJogo = input.nextInt();
                     if (fimJogo == 1) {
                         game();
-                    } else {
-                        menu();
-                        break;
-                    } 
+                    }
             }
 
             if (qtdErros == 0) {
@@ -444,13 +444,15 @@ public class Main {
                 int fimJogo = input.nextInt();
                 if (fimJogo == 1) {
                     game();
+                    break;
                 } 
                 else if (fimJogo == 2) {
-                    menu();   
                     break;
                 }
             } 
-        }   
+        }
+        menu();
     }
+
 }
 
