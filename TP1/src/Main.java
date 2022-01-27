@@ -1,3 +1,4 @@
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -167,7 +168,7 @@ public class Main {
             for (int i = 0; i < temas.length; i++) {
                 if (remover.equals(temas[i][0])) {
                     temas[i][0] = null;
-                    System.out.println("Tema removido com sucesso!");
+                    System.out.println("\nTema removido com sucesso!");
                 } 
                 if (i == temas.length) {
                     System.out.println("Tema não encontrado.");
@@ -199,7 +200,7 @@ public class Main {
                 }
             }
             if (vCadastro == false) {
-                System.out.println("O tema " + buscaPalavra1 + " não está cadastrado.");
+                System.out.println("\nO tema " + buscaPalavra1 + " não está cadastrado.");
                 
             }
             temasMenu();
@@ -301,6 +302,7 @@ public class Main {
                                 temas[i][k] = temas[i][k + 1];
                                 temas[i][k + 1] = "";
                             }
+                            System.out.println("\nPalavra removida com sucesso!");
                             palavrasMenu();
                         }
                     }
@@ -413,7 +415,7 @@ public class Main {
 
         // Loop para mostrar quantas letras tem a palavra.
         while (!condicao) {
-            System.out.println("\nQual é a letra?");
+            System.out.println("\nQual é a letra?\n");
             System.out.print("Digite a letra: ");
             char letraTentada = input.next().toLowerCase().charAt(0);
             boolean vidaPerdida = true;
@@ -498,4 +500,3 @@ public class Main {
         palavrasMenu();
     }
 }
-
