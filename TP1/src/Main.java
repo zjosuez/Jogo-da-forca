@@ -16,7 +16,8 @@ public class Main {
         System.out.println("[1] Gerenciar Temas");
         System.out.println("[2] Gerenciar Palavras");
         System.out.println("[3] Jogar");
-        System.out.println("[4] Sair");
+        System.out.println("[4] Sair\n");
+        System.out.print("Digite um valor de 1-5: ");
         int valor1 = input.nextInt();
 
         switch(valor1) {
@@ -30,7 +31,7 @@ public class Main {
                 game();
                 break;
             case 4:
-                System.out.println("Jogo finalizado!");
+                System.out.println("\nJogo finalizado!");
                 break;
             default:
                 System.out.println("Valor inválido, digite novamente.");
@@ -45,7 +46,9 @@ public class Main {
         System.out.println("[1] Cadastrar Tema");
         System.out.println("[2] Excluir Tema");
         System.out.println("[3] Buscar Tema");
-        System.out.println("[4] Voltar");
+        System.out.println("[4] Gerar 5 temas automaticamente");
+        System.out.println("[5] Voltar\n");
+        System.out.print("Digite um valor de 1-5: ");
         int valor2 = input.nextInt();
          switch (valor2) {
             case 1:
@@ -58,6 +61,10 @@ public class Main {
                 gerenciarTemas(3);
                 break;
             case 4:
+                gerarTemas();
+                break;
+               
+            case 5:
                 menu();
                 break;
             default:
@@ -75,7 +82,9 @@ public class Main {
         System.out.println("[2] Excluir Palavra");
         System.out.println("[3] Buscar Palavra");
         System.out.println("[4] Listar palavras");
-        System.out.println("[5] Voltar");
+        System.out.println("[5] Gerar 10 palavras para os 5 primeiros temas.");
+        System.out.println("[6] Voltar");
+        System.out.print("\nDigite um numero de 1-6: ");
         int valorPalavra = input.nextInt();
 
          switch (valorPalavra) {
@@ -92,6 +101,9 @@ public class Main {
                 gerenciarPalavras(4);
                 break;
             case 5:
+                gerarPalavras();
+                break;
+            case 6:
                 menu();
                 break;
             default:
@@ -104,7 +116,8 @@ public class Main {
     public static void gerenciarTemas(int valor2) {
         // ---------------------------------------Cadastrar Temas.--------------------------------------
         if (valor2 == 1) {
-        System.out.println("\nQuantidade de temas que deseja cadastrar: ");
+        System.out.println("\nQuantidade de temas que deseja cadastrar:\n");
+        System.out.print("Digite um numero de 1-50: ");
         int qtdTemas = input.nextInt();
         int k = 1;
 
@@ -116,7 +129,8 @@ public class Main {
         
         // Estrutura de repetição para armazenar os temas no array.
         for(int i = 0; i < qtdTemas; i++) {
-            System.out.println("\nQual é o nome do tema " + k + "º tema?");
+            System.out.println("\nQual é o nome do tema " + k + "º tema?\n");
+            System.out.print("Digite o nome: ");
             String valor = input.next().toLowerCase();
             if (temas[i][0] == null) {
                 temas[i][0] = "";
@@ -146,8 +160,8 @@ public class Main {
         
         // ---------------------------------------Excluir Temas.--------------------------------------
         if (valor2 == 2) {
-            System.out.println("Digite o nome do tema que deseja remover.");
-            String remover = input.next();
+            System.out.print("Digite o nome do tema que deseja remover: ");
+            String remover = input.next().toLowerCase();
 
             // Excluindo o tema que o usuário deseja.
             for (int i = 0; i < temas.length; i++) {
@@ -166,7 +180,8 @@ public class Main {
            
         // ---------------------------------------Buscar Temas.--------------------------------------
         if (valor2 == 3) {
-            System.out.println("\nQual tema deseja buscar? ");
+            System.out.println("\nQual tema deseja buscar?\n ");
+            System.out.print("Digite o nome do tema: ");
             String buscaPalavra1 = input.next().toLowerCase();
             boolean vCadastro = false;  
 
@@ -178,7 +193,7 @@ public class Main {
 
             for (int i = 0; i < temas.length; i++) {
                 if (temas[i][0].equals(buscaPalavra1)) {
-                    System.out.println("O tema " + buscaPalavra1 + " está cadastrado.");
+                    System.out.println("\nO tema " + buscaPalavra1 + " está cadastrado.");
                     vCadastro = true;
                     
                 }
@@ -193,7 +208,7 @@ public class Main {
 
     public static void gerenciarPalavras(int valorPalavra) {
         if (valorPalavra == 1) {
-            System.out.println("Temas cadastrados: ");
+            System.out.println("\nTemas cadastrados: ");
             
             // Mostrando os temas que já foram cadastrados.
             for (int i = 0; i < temas.length; i++) {
@@ -213,10 +228,10 @@ public class Main {
             }
             
             // Cadastrando as palavras
-            System.out.println("\nEscolha o tema que deseja cadastrar a palavra");
+            System.out.print("\nDigite o nome do tema que deseja cadastrar a palavra: ");
             String temaEscolha = input.next().toLowerCase();
 
-            System.out.println("\nQuantidade de palavras que deseja cadastrar: ");
+            System.out.print("\nQuantidade de palavras que deseja cadastrar(1-50): ");
             int qtdPalavras = input.nextInt();
             if (qtdPalavras > 50) {
                 System.out.println("So pode inserir 50 palavras no máximo.");
@@ -228,6 +243,7 @@ public class Main {
             for(int i = 0; i < qtdPalavras; i++) {
                 
                 System.out.println("\nQual é a " + k + "º palavra que deseja cadastrar?");
+                System.out.print("Digite a palavra: ");
                 String palavraArm = input.next().toLowerCase();
                 palavraEscolha[i] = palavraArm;
                 k++;
@@ -242,12 +258,12 @@ public class Main {
                 }           
             }
 
-            System.out.println("As palavras foram cadastrados com sucesso!\n");
+            System.out.println("\nAs palavras foram cadastrados com sucesso!\n");
             palavrasMenu();
         }
         // -------------------------------------Excluir Palavra-------------------------------------------------
         if (valorPalavra == 2) {
-            System.out.println("Qual o tema da palavra que deseja excluir?");
+            System.out.println("\nQual o tema da palavra que deseja excluir?");
 
             // Mostrando os Temas cadastrados.
             for (int i = 0; i < temas.length; i++) {
@@ -259,7 +275,7 @@ public class Main {
                     System.out.println("\n" + temas[i][0]);
                 }
             }
-
+            System.out.print("\nDigite o tema: ");
             String removerTema = input.next().toLowerCase();
             System.out.println("\nDigite a palavra que deseja remover.");
 
@@ -273,8 +289,8 @@ public class Main {
                     }
                 }
             }
-
-            String removerPalavra = input.next();
+            System.out.print("\nNome da palavra: ");
+            String removerPalavra = input.next().toLowerCase();
 
             // Removendo palavra do tema escolhido.
             for(int i = 0; i < temas.length; i++) {
@@ -295,8 +311,8 @@ public class Main {
         }
         // -------------------------------------Buscar Palavra---------------------------------------------------
         if (valorPalavra == 3) {
-            System.out.println("Digite o nome da palavra  que procura: ");
-            String procurarPalavra = input.next();
+            System.out.print("\nDigite o nome da palavra  que procura: ");
+            String procurarPalavra = input.next().toLowerCase();
             int teste = 0;
             // Percorrendo linhas e colunas do array para encontrar a palavra.
             for (int i = 0; i < temas.length; i++) {
@@ -309,7 +325,7 @@ public class Main {
             }
             // Caso não tenha a palavra no array, sera printado que a palavra não foi encontrada.
             if (teste == 0) {
-                System.out.println("Palavra não encontrada.");
+                System.out.println("\nPalavra não encontrada.");
             }
             palavrasMenu();
         }
@@ -326,8 +342,8 @@ public class Main {
                     System.out.println("\n" + temas[i][0] + "\n");
                 }
             }
-
-            String temaVer = input.next();
+            System.out.print("Digite o tema: ");
+            String temaVer = input.next().toLowerCase();
 
             for (int i = 0; i < temas.length; i++) {
                 if (temaVer.equals(temas[i][0])) {
@@ -362,8 +378,8 @@ public class Main {
                 System.out.println("\n" + temas[i][0] + "\n");
             }
         }
-
-        String temaSelecionado = input.next();
+        System.out.print("Digite o tema: ");
+        String temaSelecionado = input.next().toLowerCase();
         String [] bancoPalavras = new String [51];
         
         int aux = 0;
@@ -397,7 +413,8 @@ public class Main {
 
         // Loop para mostrar quantas letras tem a palavra.
         while (!condicao) {
-            System.out.println("Qual é a letra?");
+            System.out.println("\nQual é a letra?");
+            System.out.print("Digite a letra: ");
             char letraTentada = input.next().toLowerCase().charAt(0);
             boolean vidaPerdida = true;
 
@@ -454,5 +471,31 @@ public class Main {
         menu();
     }
 
+    public static void gerarTemas() {
+        for (int i = 0, j = 1; i < 5; i++, j++) {
+            temas[i][0] = "tema" + j;
+        }
+        System.out.println("\nTemas gerado com sucesso!");
+        temasMenu();
+    }
+
+    public static void gerarPalavras() {
+
+        for (int i = 0; i < temas.length; i++) {
+            for(int j = 0; j < temas.length; j++) {
+                if (temas[i][j] == null) {
+                    temas[i][j] = "";
+                }
+            }
+        }
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 1; j <= 10; j++) {
+                temas[i][j] = "palavra" + j;
+            }
+        }
+        System.out.println("\nPalavras gerada com sucesso!");
+        palavrasMenu();
+    }
 }
 
